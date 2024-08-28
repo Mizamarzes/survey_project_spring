@@ -1,8 +1,11 @@
 package com.survey.survey.response_options.domain.entities;
 
+import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
 import com.survey.survey.catalog.domain.entities.Catalog;
+import com.survey.survey.questions.domain.entities.Question;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,13 +37,16 @@ public class ResponseOptions {
     @JoinColumn(name = "categorycatalog_id", nullable = false)
     private Catalog catalog;
 
-    // @ManyToOne
-    // @JoinColumn(name = "parentResponseId", nullable = false)
-    // ResponseOptions responseOptions;
+    @Embedded
+    CreatedUpdatedTime createdUpdatedTime;
 
-    // @ManyToOne
-    // @JoinColumn(name = "questionId", nullable = false)
-    // private Questions questions;
+    @ManyToOne
+    @JoinColumn(name = "parentResponseId", nullable = false)
+    ResponseOptions responseOptions;
+
+    @ManyToOne
+    @JoinColumn(name = "questionId", nullable = false)
+    private Question questions;
 
     @Column(columnDefinition = "VARCHAR(30)", nullable = false)
     private String typeComponentHtml;

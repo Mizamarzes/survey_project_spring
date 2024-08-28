@@ -1,6 +1,9 @@
 package com.survey.survey.catalog.domain.entities;
 
+import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +25,9 @@ public class Catalog {
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
+
+    @Embedded
+    CreatedUpdatedTime createdUpdatedTime;
 
     public Catalog() {
     }

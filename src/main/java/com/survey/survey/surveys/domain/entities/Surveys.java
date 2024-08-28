@@ -23,8 +23,8 @@ public class Surveys {
     private Long id;
 
     @Embedded
-    private CreatedUpdatedTime at = new CreatedUpdatedTime();
-
+    CreatedUpdatedTime createdUpdatedTime;
+    
     @Column (columnDefinition = "VARCHAR(255)", nullable = false)
     private String Description;
 

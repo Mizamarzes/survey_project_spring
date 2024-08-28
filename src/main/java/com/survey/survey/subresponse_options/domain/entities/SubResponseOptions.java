@@ -1,8 +1,10 @@
 package com.survey.survey.subresponse_options.domain.entities;
 
+import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
 import com.survey.survey.response_options.domain.entities.ResponseOptions;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +31,9 @@ public class SubResponseOptions {
     @Column(columnDefinition = "INTEGER", nullable = false)
     private int subresponse_number;
 
+    @Embedded
+    CreatedUpdatedTime createdUpdatedTime;
+    
     @ManyToOne
     @JoinColumn(name = "responseoptions_id", nullable = false)
     private ResponseOptions responseOptions;

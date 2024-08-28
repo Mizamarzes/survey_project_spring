@@ -1,4 +1,4 @@
-package com.survey.survey.survey_json.domain.entities;
+package com.survey.survey.chapter.domain.entities;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
 import com.survey.survey.surveys.domain.entities.Surveys;
@@ -11,28 +11,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "survey_json")
-public class SurveyJson {
-
+@NoArgsConstructor
+@AllArgsConstructor
+public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Embedded
-    CreatedUpdatedTime createdUpdatedTime;
+    private CreatedUpdatedTime createdUpdatedTime;
 
     @ManyToOne
-    @JoinColumn(name = "survey_id")
-    private Surveys survey;
+    @JoinColumn(name = "surveyId", nullable = false)
+    private Surveys surveys;
 
-    @Column(columnDefinition = "JSON", nullable = false)
-    private String jsonstring = "";
+    @Column(columnDefinition = "varchar(50)", nullable = false)
+    private String chapterNumber;
 
+    @Column(columnDefinition = "varchar(50)", nullable = false)
+    private String chapterTitle;
 }
