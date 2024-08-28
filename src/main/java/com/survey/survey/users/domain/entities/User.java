@@ -30,13 +30,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "enabled", columnDefinition = "BOOL", nullable = false)
+    @Column(columnDefinition = "BOOL", nullable = false)
     private boolean enabled;
 
-    @Column(name = "username", columnDefinition = "VARCHAR(12)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(12)", nullable = false)
     private String username;
 
-    @Column(name = "password", columnDefinition = "VARCHAR(255)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

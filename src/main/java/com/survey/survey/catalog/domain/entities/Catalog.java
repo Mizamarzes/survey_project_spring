@@ -1,4 +1,4 @@
-package com.survey.survey.roles.domain.entities;
+package com.survey.survey.catalog.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,8 +14,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "categories_catalog")
+public class Catalog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,11 +23,7 @@ public class Role {
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
 
-    public Role() {
+    public Catalog() {
     }
 
-    public Role(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

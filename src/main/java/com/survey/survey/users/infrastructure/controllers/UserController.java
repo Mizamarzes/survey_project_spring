@@ -13,7 +13,7 @@ import com.survey.survey.users.application.services.IUserService;
 import com.survey.survey.users.domain.entities.User;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

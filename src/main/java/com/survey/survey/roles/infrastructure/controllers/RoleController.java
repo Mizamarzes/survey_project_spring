@@ -13,7 +13,7 @@ import com.survey.survey.roles.application.services.IRoleService;
 import com.survey.survey.roles.domain.entities.Role;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/role")
 public class RoleController {
 
     @Autowired
