@@ -1,8 +1,8 @@
-package com.survey.survey.users.infrastructure.repositories;
+package com.survey.survey.auth.infrastructure.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.survey.survey.users.domain.entities.User;
+import com.survey.survey.auth.domain.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 

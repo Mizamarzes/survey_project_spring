@@ -1,9 +1,9 @@
-package com.survey.survey.users.application.services;
+package com.survey.survey.auth.application.services;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.survey.survey.users.domain.entities.User;
+import com.survey.survey.auth.domain.entities.User;
 
 public interface IUserService {
     Optional<User> findById(Long id);

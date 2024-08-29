@@ -1,9 +1,9 @@
-package com.survey.survey.roles.application.services;
+package com.survey.survey.auth.application.services;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.survey.survey.roles.domain.entities.Role;
+import com.survey.survey.auth.domain.entities.Role;
 
 public interface IRoleService {
     Optional<Role> findById(Long id);

@@ -1,4 +1,4 @@
-package com.survey.survey.roles.domain.entities;
+package com.survey.survey.auth.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

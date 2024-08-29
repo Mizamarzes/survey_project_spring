@@ -1,4 +1,4 @@
-package com.survey.survey.users.infrastructure.adapters;
+package com.survey.survey.auth.infrastructure.adapters;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.survey.survey.users.application.services.IUserService;
-import com.survey.survey.users.domain.entities.User;
-import com.survey.survey.users.infrastructure.repositories.UserRepository;
+import com.survey.survey.auth.application.services.IUserService;
+import com.survey.survey.auth.domain.entities.User;
+import com.survey.survey.auth.infrastructure.repositories.UserRepository;
 
 @Service
 public class UserAdapter implements IUserService {

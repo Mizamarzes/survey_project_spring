@@ -1,8 +1,6 @@
-package com.survey.survey.users.domain.entities;
+package com.survey.survey.auth.domain.entities;
 
 import java.util.Set;
-
-import com.survey.survey.roles.domain.entities.Role;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

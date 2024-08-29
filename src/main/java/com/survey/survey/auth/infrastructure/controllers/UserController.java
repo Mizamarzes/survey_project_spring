@@ -1,4 +1,4 @@
-package com.survey.survey.roles.infrastructure.controllers;
+package com.survey.survey.auth.infrastructure.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,23 +9,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.survey.survey.roles.application.services.IRoleService;
-import com.survey.survey.roles.domain.entities.Role;
+import com.survey.survey.auth.application.services.IUserService;
+import com.survey.survey.auth.domain.entities.User;
 
 @RestController
-@RequestMapping("/role")
-public class RoleController {
+@RequestMapping("/user")
+public class UserController {
 
     @Autowired
-    private IRoleService iRoleService;
+    private IUserService iUserService;
 
     @GetMapping
-    public List<Role> listRoles(){
-        return iRoleService.getAll();
+    public List<User> listUsers(){
+        return iUserService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Role> showRole(@PathVariable Long id){
-        return iRoleService.findById(id);
+    public Optional<User> showUser(@PathVariable Long id){
+        return iUserService.findById(id);
     }
+    
 }
