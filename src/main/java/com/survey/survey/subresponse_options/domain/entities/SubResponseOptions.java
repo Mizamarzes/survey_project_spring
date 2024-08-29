@@ -1,7 +1,7 @@
 package com.survey.survey.subresponse_options.domain.entities;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
-import com.survey.survey.response_options.domain.entities.ResponseOptions;
+import com.survey.survey.category_options.domain.entities.CategoryOptions;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -36,7 +36,7 @@ public class SubResponseOptions {
     
     @ManyToOne
     @JoinColumn(name = "responseoptions_id", nullable = false)
-    private ResponseOptions responseOptions;
+    private CategoryOptions responseOptions;
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String component_html;

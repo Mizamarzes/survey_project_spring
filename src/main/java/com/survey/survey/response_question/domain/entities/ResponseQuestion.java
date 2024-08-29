@@ -1,6 +1,6 @@
 package com.survey.survey.response_question.domain.entities;
 
-import com.survey.survey.response_options.domain.entities.ResponseOptions;
+import com.survey.survey.category_options.domain.entities.CategoryOptions;
 import com.survey.survey.subresponse_options.domain.entities.SubResponseOptions;
 
 import jakarta.persistence.Column;
@@ -33,7 +33,7 @@ public class ResponseQuestion {
 
     @ManyToOne
     @JoinColumn(name = "response_id", nullable = false)
-    private ResponseOptions responseOptions;
+    private CategoryOptions responseOptions;
 
     @Column(columnDefinition = "VARCHAR(80)", nullable = false)
     private String responsetext;
