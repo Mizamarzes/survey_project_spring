@@ -10,7 +10,14 @@ import com.survey.survey.auth.application.services.IUserService;
 import com.survey.survey.auth.domain.entities.User;
 import com.survey.survey.auth.infrastructure.repositories.UserRepository;
 
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
+@Transactional(rollbackOn = Exception.class)
+@RequiredArgsConstructor
 public class UserAdapter implements IUserService {
 
     @Autowired
@@ -30,5 +37,6 @@ public class UserAdapter implements IUserService {
     public User save(User user){
         return userRepository.save(user);
     }
+
 
 }
