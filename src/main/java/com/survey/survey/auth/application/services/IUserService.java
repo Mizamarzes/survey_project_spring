@@ -7,6 +7,6 @@ import com.survey.survey.auth.domain.entities.User;
 
 public interface IUserService {
     Optional<User> findById(Long id);
-    List<User> getAll();
+    List<User> findAll();
     User save(User user);
 }
