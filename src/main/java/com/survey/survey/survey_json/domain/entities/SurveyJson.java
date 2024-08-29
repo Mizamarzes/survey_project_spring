@@ -32,7 +32,7 @@ public class SurveyJson {
     @JoinColumn(name = "survey_id")
     private Surveys survey;
 
-    @Column(columnDefinition = "JSON", nullable = false)
-    private String jsonstring = "";
+    @Column(columnDefinition = "JSONB", nullable = false)
+    private String payload = "";
 
 }

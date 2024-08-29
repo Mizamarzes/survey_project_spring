@@ -34,21 +34,21 @@ public class ResponseOptions {
     private String optionValue;
 
     @ManyToOne
-    @JoinColumn(name = "categorycatalog_id", nullable = false)
+    @JoinColumn(name = "categorycatalogId")
     private Catalog catalog;
 
     @Embedded
     CreatedUpdatedTime createdUpdatedTime;
 
     @ManyToOne
-    @JoinColumn(name = "parentResponseId", nullable = false)
+    @JoinColumn(name = "parentresponseId")
     ResponseOptions responseOptions;
 
     @ManyToOne
-    @JoinColumn(name = "questionId", nullable = false)
+    @JoinColumn(name = "questionId")
     private Question questions;
 
-    @Column(columnDefinition = "VARCHAR(30)", nullable = false)
+    @Column(name = "typecomponenthtml", columnDefinition = "VARCHAR(30)", nullable = false)
     private String typeComponentHtml;
 
     @Column(columnDefinition = "TEXT", nullable = false)
