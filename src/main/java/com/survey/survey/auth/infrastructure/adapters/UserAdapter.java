@@ -1,27 +1,34 @@
 package com.survey.survey.auth.infrastructure.adapters;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.survey.survey.auth.application.services.IUserService;
+import com.survey.survey.auth.domain.entities.Role;
 import com.survey.survey.auth.domain.entities.User;
+import com.survey.survey.auth.infrastructure.repositories.RoleRepository;
 import com.survey.survey.auth.infrastructure.repositories.UserRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
-@Transactional(rollbackOn = Exception.class)
 @RequiredArgsConstructor
 public class UserAdapter implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Optional<User> findById(Long id) {
@@ -29,12 +36,26 @@ public class UserAdapter implements IUserService {
     }
 
     @Override
-    public List<User> getAll(){
-        return userRepository.findAll();
+    @Transactional(readOnly = true)
+    public List<User> findAll() {
+        return (List<User>) userRepository.findAll();
     }
 
     @Override
-    public User save(User user){
+    @Transactional
+    public User save(User user) {
+        Optional<Role> optionalRoleUser = roleRepository.findByName("ROLE_USER");
+        List<Role> roles = new ArrayList<>();
+
+        optionalRoleUser.ifPresent(roles::add);
+
+        if (user.isAdmin()) {
+            Optional<Role> optionalRoleAdmin = roleRepository.findByName("ROLE_ADMIN");
+            optionalRoleAdmin.ifPresent(roles::add);
+        }
+
+        user.setRoles(roles);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
