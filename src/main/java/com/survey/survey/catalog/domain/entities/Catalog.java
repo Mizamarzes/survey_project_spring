@@ -19,6 +19,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "categories_catalog")
 public class Catalog {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

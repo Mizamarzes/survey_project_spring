@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,18 +22,19 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "questions")
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne()
+    @JoinColumn(name = "chapterId")
+    private Chapter chapter;
+
     @Embedded
     private CreatedUpdatedTime createdUpdatedTime;
-
-    @ManyToOne ()
-    @JoinColumn (name = "chapterId", nullable = false)
-    private Chapter chapter;
 
     @Column(columnDefinition = "varchar(10)", nullable = false)
     private String questionNumber;
@@ -41,5 +43,8 @@ public class Question {
     private String responseType;
 
     @Column(columnDefinition = "text")
-    private String  commentQuestion;
+    private String commentQuestion;
+
+    @Column(columnDefinition = "text")
+    private String questionText;
 }
