@@ -34,7 +34,7 @@ public class CategoryOptions {
 
     @ManyToOne
     @JoinColumn(name = "categoriesoptionsId")
-    private Options option;
+    private CategoryOptions Categoryoptions;
 
     @Embedded
     CreatedUpdatedTime createdUpdatedTime;
