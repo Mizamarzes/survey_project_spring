@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.survey.survey.auth.application.services.RoleServicePort;
+import com.survey.survey.auth.application.services.RoleService;
 import com.survey.survey.auth.domain.models.Role;
 
 @RestController
@@ -17,7 +17,7 @@ import com.survey.survey.auth.domain.models.Role;
 public class RoleController {
 
     @Autowired
-    private RoleServicePort iRoleService;
+    private RoleService iRoleService;
 
     @GetMapping
     public List<Role> listRoles(){

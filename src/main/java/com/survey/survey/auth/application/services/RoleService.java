@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import com.survey.survey.auth.domain.models.Role;
 
-public interface RoleServicePort {
+public interface RoleService {
+
     Optional<Role> findById(Long id);
-    Optional<Role> findByUsername(String username);
+
     List<Role> getAll();
+    
     Role save(Role role);
-    Role update(Long id, Role role);
-    void deleteById(Long id);
 }
