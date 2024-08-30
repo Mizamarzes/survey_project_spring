@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.survey.survey.auth.application.services.IRoleService;
-import com.survey.survey.auth.domain.entities.Role;
+import com.survey.survey.auth.domain.models.Role;
 import com.survey.survey.auth.infrastructure.repositories.RoleRepository;
 
 @Service
@@ -30,4 +30,10 @@ public class RoleAdapter implements IRoleService {
     public Role save(Role role) {
         return roleRepository.save(role);
     }
+
+    @Override
+    public Optional<Role> findByUsername(String username) {
+        return roleRepository.findByUsername(username);
+    }
+
 }

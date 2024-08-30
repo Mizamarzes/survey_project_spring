@@ -1,6 +1,5 @@
-package com.survey.survey.auth.domain.entities;
+package com.survey.survey.auth.domain.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,14 +19,17 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -53,10 +55,6 @@ public class User {
         uniqueConstraints = { @UniqueConstraint(columnNames = {"user_id", "role_id"})}
     )
     private List<Role> roles;
-
-    public User() {
-        roles = new ArrayList<>();
-    }
 
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

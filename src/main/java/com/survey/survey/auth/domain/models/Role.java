@@ -1,4 +1,4 @@
-package com.survey.survey.auth.domain.entities;
+package com.survey.survey.auth.domain.models;
 
 import java.util.ArrayList;
 import java.util.List;

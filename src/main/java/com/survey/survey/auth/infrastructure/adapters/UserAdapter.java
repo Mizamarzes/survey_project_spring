@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.survey.survey.auth.application.services.IUserService;
-import com.survey.survey.auth.domain.entities.Role;
-import com.survey.survey.auth.domain.entities.User;
+import com.survey.survey.auth.domain.models.Role;
+import com.survey.survey.auth.domain.models.User;
 import com.survey.survey.auth.infrastructure.repositories.RoleRepository;
 import com.survey.survey.auth.infrastructure.repositories.UserRepository;
 
@@ -59,5 +59,9 @@ public class UserAdapter implements IUserService {
         return userRepository.save(user);
     }
 
+    @Override
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 
 }

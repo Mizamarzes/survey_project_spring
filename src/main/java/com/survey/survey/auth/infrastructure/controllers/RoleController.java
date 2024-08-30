@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.survey.survey.auth.application.services.IRoleService;
-import com.survey.survey.auth.domain.entities.Role;
+import com.survey.survey.auth.domain.models.Role;
 
 @RestController
 @RequestMapping("/role")

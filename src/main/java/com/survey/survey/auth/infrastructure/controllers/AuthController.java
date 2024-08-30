@@ -1,8 +1,15 @@
 package com.survey.survey.auth.infrastructure.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.survey.survey.auth.infrastructure.adapters.AuthAdapter;
+import com.survey.survey.auth.infrastructure.entities.AuthResponse;
+import com.survey.survey.auth.infrastructure.entities.LoginRequest;
+import com.survey.survey.auth.infrastructure.entities.RegisterRequest;
 
 import lombok.RequiredArgsConstructor;
 
@@ -11,13 +18,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
 
+    private final AuthAdapter authAdapter;
+
     @PostMapping("/login")
-    public String login(){
-        return "Login from public endpoint";
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
+        return ResponseEntity.ok(authAdapter.login(request));
     }
 
-    @PostMapping(value = "register")
-    public String register(){
-        return "Register from public endpoint";
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request){
+        return ResponseEntity.ok(authAdapter.register(request));
     }
 }
