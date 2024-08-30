@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.survey.survey.auth.application.services.IUserService;
+import com.survey.survey.auth.application.services.UserServicePort;
 import com.survey.survey.auth.domain.models.User;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
     @Autowired
-    private IUserService iUserService;
+    private UserServicePort iUserService;
 
     @GetMapping
     public List<User> listUsers(){

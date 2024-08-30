@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.survey.survey.auth.application.services.IUserService;
+import com.survey.survey.auth.application.services.UserServicePort;
 import com.survey.survey.auth.domain.models.Role;
 import com.survey.survey.auth.domain.models.User;
 import com.survey.survey.auth.infrastructure.repositories.RoleRepository;
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UserAdapter implements IUserService {
+public class UserAdapter implements UserServicePort {
 
     @Autowired
     private UserRepository userRepository;
