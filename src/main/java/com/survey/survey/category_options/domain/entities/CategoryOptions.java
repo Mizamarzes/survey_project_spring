@@ -1,7 +1,7 @@
 package com.survey.survey.category_options.domain.entities;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
-import com.survey.survey.catalog.domain.entities.Catalog;
+import com.survey.survey.catalog.domain.entities.CategoriesCatalog;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -30,7 +30,7 @@ public class CategoryOptions {
 
     @ManyToOne
     @JoinColumn(name = "catalogoptionsId")
-    private Catalog catalog;
+    private CategoriesCatalog catalog;
 
     @ManyToOne
     @JoinColumn(name = "categoriesoptionsId")

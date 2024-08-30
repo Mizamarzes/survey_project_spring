@@ -1,5 +1,7 @@
 package com.survey.survey.questions.domain.entities;
 
+import java.util.List;
+
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
 import com.survey.survey.chapter.domain.entities.Chapter;
 
@@ -10,7 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,9 +32,13 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
-    @JoinColumn(name = "chapterId")
-    private Chapter chapter;
+    @ManyToMany
+    @JoinTable(
+        name = "question_chapters",
+        joinColumns = @JoinColumn(name = "question_id"),
+        inverseJoinColumns = @JoinColumn(name = "chapter_id")
+    )
+    private List<Chapter> chapters;
 
     @Embedded
     private CreatedUpdatedTime createdUpdatedTime;

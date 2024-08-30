@@ -21,8 +21,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "categoriesCatalog")
-public class Catalog {
+@Table(name = "categories_catalog")
+public class CategoriesCatalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

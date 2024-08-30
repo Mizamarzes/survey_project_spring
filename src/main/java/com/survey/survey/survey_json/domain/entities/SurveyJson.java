@@ -1,7 +1,7 @@
 package com.survey.survey.survey_json.domain.entities;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
-import com.survey.survey.surveys.domain.entities.Surveys;
+import com.survey.survey.surveys.domain.entities.Survey;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -30,7 +30,7 @@ public class SurveyJson {
 
     @ManyToOne
     @JoinColumn(name = "survey_id")
-    private Surveys survey;
+    private Survey survey;
 
     @Column(columnDefinition = "JSONB", nullable = false)
     private String payload = "";
