@@ -1,25 +1,25 @@
-package com.survey.survey.survey_json.domain.entities;
+package com.survey.survey.optionquestions.domain.entities;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
-import com.survey.survey.surveys.domain.entities.Survey;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "survey_json")
-public class SurveyJson {
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "option_questions")
+public class OptionQuestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,5 @@ public class SurveyJson {
     @Embedded
     CreatedUpdatedTime createdUpdatedTime;
 
-    @ManyToOne
-    @JoinColumn(name = "survey_id")
-    private Survey survey;
-
-    @Column(columnDefinition = "JSONB", nullable = false)
-    private String payload = "";
-
+    
 }

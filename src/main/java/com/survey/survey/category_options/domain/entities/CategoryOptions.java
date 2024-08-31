@@ -2,6 +2,7 @@ package com.survey.survey.category_options.domain.entities;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
 import com.survey.survey.catalog.domain.entities.CategoriesCatalog;
+import com.survey.survey.options.domain.entities.Options;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "categoryOptions")
+@Table(name = "category_options")
 public class CategoryOptions {
 
     @Id
@@ -29,12 +30,12 @@ public class CategoryOptions {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "catalogoptionsId")
+    @JoinColumn(name = "catalogoptions_id")
     private CategoriesCatalog catalog;
 
     @ManyToOne
-    @JoinColumn(name = "categoriesoptionsId")
-    private CategoryOptions Categoryoptions;
+    @JoinColumn(name = "categoriesoptions_id")
+    private Options options;
 
     @Embedded
     CreatedUpdatedTime createdUpdatedTime;
