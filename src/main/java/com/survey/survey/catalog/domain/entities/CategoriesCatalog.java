@@ -1,6 +1,9 @@
-package com.survey.survey.surveys.domain.entities;
+package com.survey.survey.catalog.domain.entities;
+
+import java.util.List;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
+import com.survey.survey.surveys.domain.entities.Survey;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -8,15 +11,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "surveys")
-public class Surveys {
+@Table(name = "categories_catalog")
+public class CategoriesCatalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +34,10 @@ public class Surveys {
 
     @Embedded
     CreatedUpdatedTime createdUpdatedTime;
-    
-    @Column (columnDefinition = "VARCHAR(255)", nullable = false)
-    private String Description;
 
-    @Column (columnDefinition = "VARCHAR(255)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "categoriesCatalogs")
+    private List<Survey> surveys;
 }

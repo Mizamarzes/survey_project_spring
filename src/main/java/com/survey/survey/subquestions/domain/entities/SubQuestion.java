@@ -1,11 +1,13 @@
-package com.survey.survey.subresponse_options.domain.entities;
+package com.survey.survey.subquestions.domain.entities;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
-import com.survey.survey.category_options.domain.entities.CategoryOptions;
+import com.survey.survey.questions.domain.entities.Question;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,31 +19,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
-@Table(name = "subresponse_options")
-public class SubResponseOptions {
+@AllArgsConstructor
+@Table(name = "sub_questions")
+public class SubQuestion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "INTEGER", nullable = false)
-    private int subresponse_number;
-
     @Embedded
     CreatedUpdatedTime createdUpdatedTime;
-    
-    @ManyToOne
-    @JoinColumn(name = "responseoptions_id", nullable = false)
-    private CategoryOptions responseOptions;
 
-    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
-    private String component_html;
+    @ManyToOne(
+        targetEntity = Question.class,
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL    
+    )
+    @JoinColumn(name = "question_id")
+    private Question question;
 
-    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
-    private String subresponse_text;
- 
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String subquestiontext;
+
 }

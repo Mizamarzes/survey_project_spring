@@ -1,7 +1,11 @@
-package com.survey.survey.auth.domain.entities;
+package com.survey.survey.auth.domain.models;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,17 +24,20 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,14 +45,14 @@ public class User {
     @Column(columnDefinition = "BOOL", nullable = false)
     private boolean enabled;
 
-    @Column(columnDefinition = "VARCHAR(12)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(12)", nullable = false, unique = true)
     private String username;
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String password;
 
     @JsonIgnoreProperties({"users", "handler", "hibernateLazyInitializer"})
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
         name = "users_roles", 
         joinColumns = @JoinColumn(name = "user_id"), 
@@ -53,10 +60,6 @@ public class User {
         uniqueConstraints = { @UniqueConstraint(columnNames = {"user_id", "role_id"})}
     )
     private List<Role> roles;
-
-    public User() {
-        roles = new ArrayList<>();
-    }
 
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -66,5 +69,14 @@ public class User {
     public void prePersist() {
         enabled = true;
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Convertir los roles a GrantedAuthority
+        return roles.stream()
+                    .map(role -> new SimpleGrantedAuthority(role.getName())) // Asumiendo que Role tiene un método getName()
+                    .toList(); // Usar toList() para retornar una lista de GrantedAuthority
+    }
+
 
 }

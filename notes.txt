@@ -1,0 +1,15 @@
+VIDEOS:
+
+
+¿Como crear una API REST?
+https://www.youtube.com/watch?v=wT-hIeYyxBg
+
+
+¿Cómo crear el login? Spring Boot 3 + Spring Security 6 + JWT Authentication
+https://www.youtube.com/watch?v=nwqQYCM4YT8&t=680s 
+
+
+Relaciones en JPA con spring boot explicación:
+https://www.youtube.com/watch?v=6RQTsx_6wXo 
+Repo:
+https://github.com/UnProgramadorNaceOfficial/JPA-relations 
