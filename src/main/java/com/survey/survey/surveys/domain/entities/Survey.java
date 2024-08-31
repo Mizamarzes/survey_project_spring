@@ -2,6 +2,7 @@ package com.survey.survey.surveys.domain.entities;
 
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
+import com.survey.survey.catalog.domain.entities.CategoriesCatalog;
 import com.survey.survey.chapter.domain.entities.Chapter;
 
 import jakarta.persistence.CascadeType;
@@ -23,6 +24,7 @@ import lombok.Setter;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
 @Getter
 @Setter
@@ -54,6 +56,7 @@ public class Survey {
         joinColumns = @JoinColumn(name = "survey_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+    private List<CategoriesCatalog> categoriesCatalogs;
 
     @Column(columnDefinition = "VARCHAR(20)", nullable = false)
     private String componenthtml;

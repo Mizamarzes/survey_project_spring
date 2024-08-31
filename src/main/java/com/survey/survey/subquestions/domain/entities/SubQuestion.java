@@ -1,32 +1,31 @@
-package com.survey.survey.catalog.domain.entities;
-
-import java.util.List;
+package com.survey.survey.subquestions.domain.entities;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
-import com.survey.survey.surveys.domain.entities.Survey;
+import com.survey.survey.questions.domain.entities.Question;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "categories_catalog")
-public class CategoriesCatalog {
+@Table(name = "sub_questions")
+public class SubQuestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +34,15 @@ public class CategoriesCatalog {
     @Embedded
     CreatedUpdatedTime createdUpdatedTime;
 
-    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
-    private String name;
+    @ManyToOne(
+        targetEntity = Question.class,
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL    
+    )
+    @JoinColumn(name = "question_id")
+    private Question question;
 
-    @ManyToMany(mappedBy = "categoriesCatalogs")
-    private List<Survey> surveys;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String subquestiontext;
+
 }

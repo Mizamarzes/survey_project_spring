@@ -4,16 +4,20 @@ import java.util.List;
 
 import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
 import com.survey.survey.chapter.domain.entities.Chapter;
+import com.survey.survey.questionCategories.domain.entities.QuestionCategory;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,6 +43,14 @@ public class Question {
         inverseJoinColumns = @JoinColumn(name = "chapter_id")
     )
     private List<Chapter> chapters;
+
+    @ManyToOne(
+        targetEntity = QuestionCategory.class, 
+        fetch = FetchType.LAZY, 
+        cascade = CascadeType.ALL
+    )
+    @JoinColumn(name = "question_category_id")
+    private QuestionCategory questionCategory;
 
     @Embedded
     private CreatedUpdatedTime createdUpdatedTime;
