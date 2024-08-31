@@ -2,13 +2,15 @@ package com.survey.survey.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
+import com.survey.survey.auth.infrastructure.Jwt.JwtAuthenticationFilter;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,10 +19,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SpringSecurityConfig {
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final AuthenticationProvider authProvider;
 
     @Bean
     public SecurityFilterChain SecurityfilterChain(HttpSecurity http) throws Exception {
@@ -33,7 +33,11 @@ public class SpringSecurityConfig {
                 .requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
                 )
-            .formLogin(withDefaults())
+            .sessionManagement(sessionManager ->
+                sessionManager
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authenticationProvider(authProvider)
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
               
     }
