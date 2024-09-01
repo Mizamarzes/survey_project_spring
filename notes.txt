@@ -13,3 +13,11 @@ Relaciones en JPA con spring boot explicación:
 https://www.youtube.com/watch?v=6RQTsx_6wXo 
 Repo:
 https://github.com/UnProgramadorNaceOfficial/JPA-relations 
+
+
+
+{
+    "username": "juandiego",
+    "password": "juan123",
+    "roles": ["USER", "ADMIN"]
+}

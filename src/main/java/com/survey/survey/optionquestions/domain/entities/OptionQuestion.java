@@ -1,9 +1,9 @@
 package com.survey.survey.optionquestions.domain.entities;
 
-import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
-import com.survey.survey.options.domain.entities.Options;
-import com.survey.survey.questions.domain.entities.Question;
-import com.survey.survey.subquestions.domain.entities.SubQuestion;
+import com.survey.survey.helpers.CreatedUpdatedTime;
+import com.survey.survey.options_management.domain.models.Option;
+import com.survey.survey.questions_management.domain.models.Question;
+import com.survey.survey.subquestions_management.domain.models.SubQuestion;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
@@ -52,12 +52,12 @@ public class OptionQuestion {
     private SubQuestion subQuestion;
 
     @ManyToOne(
-        targetEntity = Options.class, 
+        targetEntity = Option.class, 
         fetch = FetchType.LAZY, 
         cascade = CascadeType.ALL
     )
     @JoinColumn(name = "option_id")
-    private Options option_id;
+    private Option option_id;
 
     
 }

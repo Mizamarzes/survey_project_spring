@@ -2,8 +2,8 @@ package com.survey.survey.catalog.domain.entities;
 
 import java.util.List;
 
-import com.survey.survey.at.domain.entities.CreatedUpdatedTime;
-import com.survey.survey.surveys.domain.entities.Survey;
+import com.survey.survey.helpers.CreatedUpdatedTime;
+import com.survey.survey.survey_management.domain.models.Survey;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

@@ -1,11 +1,13 @@
-package com.survey.survey.category_options.domain.entities;
+package com.survey.survey.subquestions_management.domain.models;
 
-import com.survey.survey.catalog.domain.entities.CategoriesCatalog;
 import com.survey.survey.helpers.CreatedUpdatedTime;
-import com.survey.survey.options_management.domain.models.Option;
+import com.survey.survey.questions_management.domain.models.Question;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,26 +19,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
-@Table(name = "category_options")
-public class CategoryOptions {
+@AllArgsConstructor
+@Table(name = "sub_questions")
+public class SubQuestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "catalogoptions_id")
-    private CategoriesCatalog catalog;
-
-    @ManyToOne
-    @JoinColumn(name = "categoriesoptions_id")
-    private Option options;
-
     @Embedded
     CreatedUpdatedTime createdUpdatedTime;
+
+    @ManyToOne(
+        targetEntity = Question.class,
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL    
+    )
+    @JoinColumn(name = "question_id")
+    private Question question;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String subquestiontext;
+
 }
