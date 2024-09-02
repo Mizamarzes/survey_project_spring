@@ -1,6 +1,6 @@
 package com.survey.survey.category_options.domain.entities;
 
-import com.survey.survey.catalog.domain.entities.CategoriesCatalog;
+import com.survey.survey.catalog_management.domain.models.CategoryCatalog;
 import com.survey.survey.helpers.CreatedUpdatedTime;
 import com.survey.survey.options_management.domain.models.Option;
 
@@ -31,7 +31,7 @@ public class CategoryOptions {
 
     @ManyToOne
     @JoinColumn(name = "catalogoptions_id")
-    private CategoriesCatalog catalog;
+    private CategoryCatalog catalog;
 
     @ManyToOne
     @JoinColumn(name = "categoriesoptions_id")

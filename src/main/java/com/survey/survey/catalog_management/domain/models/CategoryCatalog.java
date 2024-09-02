@@ -1,4 +1,4 @@
-package com.survey.survey.catalog.domain.entities;
+package com.survey.survey.catalog_management.domain.models;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table(name = "categories_catalog")
-public class CategoriesCatalog {
+public class CategoryCatalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

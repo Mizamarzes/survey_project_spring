@@ -2,7 +2,7 @@ package com.survey.survey.survey_management.domain.models;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.survey.survey.catalog.domain.entities.CategoriesCatalog;
+import com.survey.survey.catalog_management.domain.models.CategoryCatalog;
 import com.survey.survey.chapters_management.domain.models.Chapter;
 import com.survey.survey.helpers.CreatedUpdatedTime;
 
@@ -58,7 +58,7 @@ public class Survey {
         joinColumns = @JoinColumn(name = "survey_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<CategoriesCatalog> categoriesCatalogs;
+    private List<CategoryCatalog> categoriesCatalogs;
 
     @Column(columnDefinition = "VARCHAR(20)")
     private String componenthtml;
