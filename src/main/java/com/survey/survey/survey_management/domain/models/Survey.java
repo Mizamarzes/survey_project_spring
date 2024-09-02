@@ -1,6 +1,7 @@
 package com.survey.survey.survey_management.domain.models;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.survey.survey.catalog.domain.entities.CategoriesCatalog;
 import com.survey.survey.chapters_management.domain.models.Chapter;
 import com.survey.survey.helpers.CreatedUpdatedTime;
@@ -22,8 +23,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-import java.util.HashSet;
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
+
 import java.util.List;
 
 @Getter
@@ -31,6 +32,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(NON_DEFAULT)
 @Table(name = "surveys")
 public class Survey {
 
@@ -48,7 +50,7 @@ public class Survey {
     private String name;
 
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Chapter> chapters = new HashSet<>();
+    private List<Chapter> chapters;
 
     @ManyToMany
     @JoinTable(
@@ -58,10 +60,10 @@ public class Survey {
     )
     private List<CategoriesCatalog> categoriesCatalogs;
 
-    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(20)")
     private String componenthtml;
 
-    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(20)")
     private String componentreact;
 
 

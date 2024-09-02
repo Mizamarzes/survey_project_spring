@@ -1,7 +1,6 @@
 package com.survey.survey.options_management.domain.models;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import com.survey.survey.category_options.domain.entities.CategoryOptions;
 import com.survey.survey.helpers.CreatedUpdatedTime;
@@ -40,5 +39,5 @@ public class Option {
     private String optiontext;
 
     @OneToMany(mappedBy = "options", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<CategoryOptions> categoryOptions = new HashSet<>();
+    private List<CategoryOptions> categoryOptions;
 }

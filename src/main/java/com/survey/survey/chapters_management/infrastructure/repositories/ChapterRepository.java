@@ -1,5 +1,9 @@
 package com.survey.survey.chapters_management.infrastructure.repositories;
 
-public interface ChapterRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.survey.survey.chapters_management.domain.models.Chapter;
+
+public interface ChapterRepository extends JpaRepository<Chapter, Long>{
 
 }
