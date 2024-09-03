@@ -1,6 +1,9 @@
 package com.survey.survey.survey_management.infrastructure.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 import com.survey.survey.survey_management.application.services.SurveyService;
 import com.survey.survey.survey_management.domain.models.Survey;
@@ -28,9 +31,19 @@ public class SurveyController {
     private SurveyService surveyService;
 
     @GetMapping
-    public ResponseEntity<List<Survey>> listSurveys(){
-        List<Survey> surveys = surveyService.findAll();
-        return new ResponseEntity<>(surveys, HttpStatus.OK);
+    public ResponseEntity<Page<Survey>> listSurveys( 
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<Survey> surveyPage = surveyService.findAll(pageable);
+
+        if (surveyPage.hasContent()) {
+            return ResponseEntity.ok(surveyPage);
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}")

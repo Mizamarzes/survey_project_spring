@@ -23,22 +23,26 @@ public class SpringSecurityConfig {
     private final AuthenticationProvider authProvider;
 
     @Bean
-    public SecurityFilterChain SecurityfilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf(csrf ->
-                csrf
-                .disable())
-            .authorizeHttpRequests(authRequest -> 
-                authRequest
-                .requestMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated()
+                .cors(cors -> cors
+                    .configurationSource(request -> {
+                        var corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
+                        corsConfiguration.addAllowedOrigin("http://localhost:5173");
+                        corsConfiguration.addAllowedMethod("*");
+                        corsConfiguration.addAllowedHeader("*");
+                        corsConfiguration.setAllowCredentials(true);
+                        return corsConfiguration;
+                    })
                 )
-            .sessionManagement(sessionManager ->
-                sessionManager
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authenticationProvider(authProvider)
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
-              
+                .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF para aplicaciones sin estado (stateless)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(authz -> authz
+                    .requestMatchers("/auth/**").permitAll() // Permitir acceso a /auth/** sin autenticación
+                    .requestMatchers("/survey/**").authenticated() // Requiere autenticación para /survey/**
+                    .anyRequest().authenticated()) // Autenticar cualquier otra solicitud
+                .authenticationProvider(authProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 }
