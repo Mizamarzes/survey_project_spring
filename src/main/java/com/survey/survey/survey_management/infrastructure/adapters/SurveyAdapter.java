@@ -1,18 +1,23 @@
 package com.survey.survey.survey_management.infrastructure.adapters;
 
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.survey.survey.survey_management.application.services.SurveyService;
 import com.survey.survey.survey_management.domain.models.Survey;
 import com.survey.survey.survey_management.infrastructure.repositories.SurveyRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
+@Transactional(rollbackOn = Exception.class)
 @RequiredArgsConstructor
 public class SurveyAdapter implements SurveyService {
 
@@ -24,9 +29,10 @@ public class SurveyAdapter implements SurveyService {
         return surveyRepository.findById(id);
     }
 
+    @Transactional
     @Override
-    public List<Survey> findAll() {
-        return surveyRepository.findAll();
+    public Page<Survey> findAll(Pageable pageable) {
+        return (Page<Survey>) surveyRepository.findAll(pageable);
     }
 
     @Override
