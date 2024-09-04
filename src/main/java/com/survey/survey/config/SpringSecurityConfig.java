@@ -39,7 +39,7 @@ public class SpringSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authz -> authz
                     .requestMatchers("/auth/**").permitAll() // Permitir acceso a /auth/** sin autenticación
-                    .requestMatchers("/survey/**").authenticated() // Requiere autenticación para /survey/**
+                    .requestMatchers("/api/**").authenticated() // Requiere autenticación para /**/** todos
                     .anyRequest().authenticated()) // Autenticar cualquier otra solicitud
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

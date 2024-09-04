@@ -3,8 +3,9 @@ package com.survey.survey.survey_management.infrastructure.adapters;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.survey.survey.survey_management.application.services.SurveyService;
@@ -31,8 +32,8 @@ public class SurveyAdapter implements SurveyService {
 
     @Transactional
     @Override
-    public Page<Survey> findAll(Pageable pageable) {
-        return (Page<Survey>) surveyRepository.findAll(pageable);
+    public Page<Survey> findAll(int page, int size) {
+        return surveyRepository.findAll(PageRequest.of(page, size, Sort.by("name")));
     }
 
     @Override
