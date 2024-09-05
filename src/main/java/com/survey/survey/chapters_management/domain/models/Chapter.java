@@ -44,14 +44,6 @@ public class Chapter {
     private List<Question> questions;
 
     @Column(columnDefinition = "varchar(50)", nullable = false)
-    private String chapterNumber;
-
-    @Column(columnDefinition = "varchar(50)", nullable = false)
     private String chapterTitle;
 
-    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
-    private String componenthtml;
-
-    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
-    private String componentreact;
 }

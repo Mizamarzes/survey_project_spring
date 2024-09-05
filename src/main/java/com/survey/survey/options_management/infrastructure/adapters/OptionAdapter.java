@@ -36,7 +36,6 @@ public class OptionAdapter implements OptionService {
         return optionRepository.findById(id)
             .map(existingOption -> {
                 existingOption.setOptiontext(option.getOptiontext());
-                existingOption.setCategoryOptions(option.getCategoryOptions());
                 return optionRepository.save(existingOption);
             }) 
             .orElse(null);

@@ -1,17 +1,15 @@
 package com.survey.survey.options_management.domain.models;
 
-import java.util.List;
-
-import com.survey.survey.category_options.domain.entities.CategoryOptions;
 import com.survey.survey.helpers.CreatedUpdatedTime;
+import com.survey.survey.questions_management.domain.models.Question;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 
@@ -38,6 +36,8 @@ public class Option {
     @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     private String optiontext;
 
-    @OneToMany(mappedBy = "options", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CategoryOptions> categoryOptions;
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question; 
+
 }

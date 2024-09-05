@@ -35,10 +35,7 @@ public class QuestionAdapter implements QuestionService{
     public Question update(Long id, Question question) {
         return questionRepository.findById(id)
                 .map(existingQuestion -> {
-                    existingQuestion.setQuestionNumber(question.getQuestionNumber());
                     existingQuestion.setResponseType(question.getResponseType());
-                    existingQuestion.setCommentQuestion(question.getCommentQuestion());
-                    existingQuestion.setQuestionNumber(question.getQuestionNumber());
                     return questionRepository.save(existingQuestion);
                 })
                 .orElse(null);
