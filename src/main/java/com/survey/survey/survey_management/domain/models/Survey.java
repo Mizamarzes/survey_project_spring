@@ -2,7 +2,6 @@ package com.survey.survey.survey_management.domain.models;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.survey.survey.catalog_management.domain.models.CategoryCatalog;
 import com.survey.survey.chapters_management.domain.models.Chapter;
 import com.survey.survey.helpers.CreatedUpdatedTime;
 
@@ -13,9 +12,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -51,20 +47,5 @@ public class Survey {
 
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Chapter> chapters;
-
-    @ManyToMany
-    @JoinTable(
-        name = "survey_category",
-        joinColumns = @JoinColumn(name = "survey_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<CategoryCatalog> categoriesCatalogs;
-
-    @Column(columnDefinition = "VARCHAR(20)")
-    private String componenthtml;
-
-    @Column(columnDefinition = "VARCHAR(20)")
-    private String componentreact;
-
 
 }

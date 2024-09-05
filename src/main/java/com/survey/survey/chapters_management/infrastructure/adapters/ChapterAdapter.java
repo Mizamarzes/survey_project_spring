@@ -35,7 +35,6 @@ public class ChapterAdapter implements ChapterService {
     public Chapter update(Long id, Chapter chapter) {
         return chapterRepository.findById(id)
                 .map(existingChapter -> {
-                    existingChapter.setChapterNumber(chapter.getChapterNumber());
                     existingChapter.setChapterTitle(chapter.getChapterTitle());
                     return chapterRepository.save(existingChapter);
                 })
