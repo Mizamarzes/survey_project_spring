@@ -2,6 +2,7 @@ package com.survey.survey.chapters_management.domain.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.survey.survey.helpers.CreatedUpdatedTime;
 import com.survey.survey.questions_management.domain.models.Question;
 import com.survey.survey.survey_management.domain.models.Survey;
@@ -36,6 +37,7 @@ public class Chapter {
     @Embedded
     private CreatedUpdatedTime createdUpdatedTime;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "survey_id")
     private Survey survey;

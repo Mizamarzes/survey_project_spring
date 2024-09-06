@@ -2,6 +2,7 @@ package com.survey.survey.questions_management.domain.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.survey.survey.chapters_management.domain.models.Chapter;
 import com.survey.survey.helpers.CreatedUpdatedTime;
 import com.survey.survey.options_management.domain.models.Option;
@@ -35,6 +36,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "question_chapters",

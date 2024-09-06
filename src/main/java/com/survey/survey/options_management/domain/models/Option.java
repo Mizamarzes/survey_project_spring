@@ -1,5 +1,6 @@
 package com.survey.survey.options_management.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.survey.survey.helpers.CreatedUpdatedTime;
 import com.survey.survey.questions_management.domain.models.Question;
 
@@ -36,6 +37,7 @@ public class Option {
     @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     private String optiontext;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question; 
