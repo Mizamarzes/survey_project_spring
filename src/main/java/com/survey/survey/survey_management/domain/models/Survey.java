@@ -1,6 +1,7 @@
 package com.survey.survey.survey_management.domain.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.survey.survey.chapters_management.domain.models.Chapter;
 import com.survey.survey.helpers.CreatedUpdatedTime;
@@ -45,6 +46,7 @@ public class Survey {
     @Column (columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Chapter> chapters;
 

@@ -33,7 +33,7 @@ public class SurveyAdapter implements SurveyService {
     @Transactional
     @Override
     public Page<Survey> findAll(int page, int size) {
-        return surveyRepository.findAll(PageRequest.of(page, size, Sort.by("name")));
+        return surveyRepository.findAll(PageRequest.of(page, size, Sort.by("id")));
     }
 
     @Override

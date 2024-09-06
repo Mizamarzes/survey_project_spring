@@ -16,8 +16,3 @@ https://github.com/UnProgramadorNaceOfficial/JPA-relations
 
 
 
-{
-    "username": "juandiego",
-    "password": "juan123",
-    "roles": ["USER", "ADMIN"]
-}
